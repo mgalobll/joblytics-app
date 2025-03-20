@@ -81,14 +81,9 @@ export default function NetworkPage() {
 
   return (
     <div>
-      <div className="sm:flex sm:items-center">
-        <div className="sm:flex-auto">
-          <h1 className="text-2xl font-semibold leading-6 text-dark-grey">Network</h1>
-          <p className="mt-2 text-sm text-medium-grey">
-            Manage your professional connections and track networking activities.
-          </p>
-        </div>
-        <div className="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
+      <div className="border-b border-border pb-5 sm:flex sm:items-center sm:justify-between">
+        <h2 className="text-2xl font-semibold leading-6 text-dark-grey">Network</h2>
+        <div className="mt-3 sm:ml-4 sm:mt-0">
           <button
             type="button"
             onClick={() => setIsAddingConnection(true)}
@@ -101,159 +96,142 @@ export default function NetworkPage() {
       </div>
 
       {isAddingConnection && (
-        <div className="mt-8 flow-root">
-          <div className="bg-white px-4 py-5 sm:p-6 rounded-lg shadow">
-            <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-              <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-                <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-dark-grey">
-                    Name
-                  </label>
-                  <div className="mt-1">
-                    <input
-                      type="text"
-                      id="name"
-                      className="block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary sm:text-sm"
-                      {...register('name', { required: 'Name is required' })}
-                    />
-                    {errors.name && (
-                      <p className="mt-1 text-sm text-error">{errors.name.message}</p>
-                    )}
-                  </div>
-                </div>
-
-                <div>
-                  <label htmlFor="company" className="block text-sm font-medium text-dark-grey">
-                    Company
-                  </label>
-                  <div className="mt-1">
-                    <input
-                      type="text"
-                      id="company"
-                      className="block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary sm:text-sm"
-                      {...register('company', { required: 'Company is required' })}
-                    />
-                    {errors.company && (
-                      <p className="mt-1 text-sm text-error">{errors.company.message}</p>
-                    )}
-                  </div>
-                </div>
-
-                <div>
-                  <label htmlFor="position" className="block text-sm font-medium text-dark-grey">
-                    Position
-                  </label>
-                  <div className="mt-1">
-                    <input
-                      type="text"
-                      id="position"
-                      className="block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary sm:text-sm"
-                      {...register('position', { required: 'Position is required' })}
-                    />
-                    {errors.position && (
-                      <p className="mt-1 text-sm text-error">{errors.position.message}</p>
-                    )}
-                  </div>
-                </div>
-
-                <div>
-                  <label htmlFor="profile_link" className="block text-sm font-medium text-dark-grey">
-                    Profile Link
-                  </label>
-                  <div className="mt-1">
-                    <input
-                      type="url"
-                      id="profile_link"
-                      className="block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary sm:text-sm"
-                      {...register('profile_link')}
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <label htmlFor="priority" className="block text-sm font-medium text-dark-grey">
-                    Priority (1-5)
-                  </label>
-                  <div className="mt-1">
-                    <input
-                      type="number"
-                      id="priority"
-                      min="1"
-                      max="5"
-                      className="block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary sm:text-sm"
-                      {...register('priority', {
-                        required: 'Priority is required',
-                        min: { value: 1, message: 'Minimum priority is 1' },
-                        max: { value: 5, message: 'Maximum priority is 5' },
-                      })}
-                    />
-                    {errors.priority && (
-                      <p className="mt-1 text-sm text-error">{errors.priority.message}</p>
-                    )}
-                  </div>
-                </div>
-
-                <div>
-                  <label htmlFor="reach_out_status" className="block text-sm font-medium text-dark-grey">
-                    Status
-                  </label>
-                  <div className="mt-1">
-                    <select
-                      id="reach_out_status"
-                      className="block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary sm:text-sm"
-                      {...register('reach_out_status', { required: 'Status is required' })}
-                    >
-                      {Object.entries(statusLabels).map(([value, label]) => (
-                        <option key={value} value={value}>
-                          {label}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-                </div>
-
-                <div className="sm:col-span-2">
-                  <label htmlFor="notes" className="block text-sm font-medium text-dark-grey">
-                    Notes
-                  </label>
-                  <div className="mt-1">
-                    <textarea
-                      id="notes"
-                      rows={3}
-                      className="block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary sm:text-sm"
-                      {...register('notes')}
-                    />
-                  </div>
-                </div>
-              </div>
-
-              <div className="flex justify-end gap-x-3">
-                <button
-                  type="button"
-                  onClick={() => {
-                    setIsAddingConnection(false);
-                    reset();
-                  }}
-                  className="rounded-md bg-white px-3 py-2 text-sm font-semibold text-dark-grey shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
-                >
-                  Cancel
-                </button>
-                <button
-                  type="submit"
-                  className="rounded-md bg-primary px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
-                >
-                  Save
-                </button>
-              </div>
-            </form>
+        <form onSubmit={handleSubmit(onSubmit)} className="mt-6 space-y-4 bg-surface p-4 rounded-lg border border-border">
+          <div>
+            <label htmlFor="name" className="block text-sm font-medium text-dark-grey">
+              Name
+            </label>
+            <input
+              type="text"
+              id="name"
+              className="mt-1 block w-full rounded-md border-0 py-1.5 text-dark-grey shadow-sm ring-1 ring-inset ring-border placeholder:text-medium-grey focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"
+              {...register('name', { required: 'Name is required' })}
+            />
+            {errors.name && (
+              <p className="mt-1 text-sm text-error">{errors.name.message}</p>
+            )}
           </div>
-        </div>
+
+          <div>
+            <label htmlFor="company" className="block text-sm font-medium text-dark-grey">
+              Company
+            </label>
+            <input
+              type="text"
+              id="company"
+              className="mt-1 block w-full rounded-md border-0 py-1.5 text-dark-grey shadow-sm ring-1 ring-inset ring-border placeholder:text-medium-grey focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"
+              {...register('company', { required: 'Company is required' })}
+            />
+            {errors.company && (
+              <p className="mt-1 text-sm text-error">{errors.company.message}</p>
+            )}
+          </div>
+
+          <div>
+            <label htmlFor="position" className="block text-sm font-medium text-dark-grey">
+              Position
+            </label>
+            <input
+              type="text"
+              id="position"
+              className="mt-1 block w-full rounded-md border-0 py-1.5 text-dark-grey shadow-sm ring-1 ring-inset ring-border placeholder:text-medium-grey focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"
+              {...register('position', { required: 'Position is required' })}
+            />
+            {errors.position && (
+              <p className="mt-1 text-sm text-error">{errors.position.message}</p>
+            )}
+          </div>
+
+          <div>
+            <label htmlFor="reach_out_status" className="block text-sm font-medium text-dark-grey">
+              Status
+            </label>
+            <select
+              id="reach_out_status"
+              className="mt-1 block w-full rounded-md border-0 py-1.5 text-dark-grey shadow-sm ring-1 ring-inset ring-border focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"
+              {...register('reach_out_status', { required: 'Status is required' })}
+            >
+              <option value="not_contacted">Not Contacted</option>
+              <option value="contacted">Contacted</option>
+              <option value="responded">Responded</option>
+              <option value="meeting_scheduled">Meeting Scheduled</option>
+              <option value="met">Met</option>
+            </select>
+            {errors.reach_out_status && (
+              <p className="mt-1 text-sm text-error">{errors.reach_out_status.message}</p>
+            )}
+          </div>
+
+          <div>
+            <label htmlFor="profile_link" className="block text-sm font-medium text-dark-grey">
+              Profile Link
+            </label>
+            <input
+              type="url"
+              id="profile_link"
+              className="mt-1 block w-full rounded-md border-0 py-1.5 text-dark-grey shadow-sm ring-1 ring-inset ring-border placeholder:text-medium-grey focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"
+              {...register('profile_link')}
+            />
+          </div>
+
+          <div>
+            <label htmlFor="priority" className="block text-sm font-medium text-dark-grey">
+              Priority (1-5)
+            </label>
+            <input
+              type="number"
+              id="priority"
+              min="1"
+              max="5"
+              className="mt-1 block w-full rounded-md border-0 py-1.5 text-dark-grey shadow-sm ring-1 ring-inset ring-border placeholder:text-medium-grey focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"
+              {...register('priority', {
+                required: 'Priority is required',
+                min: { value: 1, message: 'Must be at least 1' },
+                max: { value: 5, message: 'Must be at most 5' },
+              })}
+            />
+            {errors.priority && (
+              <p className="mt-1 text-sm text-error">{errors.priority.message}</p>
+            )}
+          </div>
+
+          <div>
+            <label htmlFor="notes" className="block text-sm font-medium text-dark-grey">
+              Notes
+            </label>
+            <textarea
+              id="notes"
+              rows={3}
+              className="mt-1 block w-full rounded-md border-0 py-1.5 text-dark-grey shadow-sm ring-1 ring-inset ring-border placeholder:text-medium-grey focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"
+              {...register('notes')}
+            />
+          </div>
+
+          <div className="flex justify-end gap-3">
+            <button
+              type="button"
+              onClick={() => {
+                setIsAddingConnection(false);
+                reset();
+              }}
+              className="rounded-md bg-surface px-3 py-2 text-sm font-semibold text-dark-grey shadow-sm ring-1 ring-inset ring-border hover:bg-light-grey"
+            >
+              Cancel
+            </button>
+            <button
+              type="submit"
+              className="rounded-md bg-primary px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+            >
+              Save
+            </button>
+          </div>
+        </form>
       )}
 
       <div className="mt-8 flow-root">
         <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
           <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
-            <table className="min-w-full divide-y divide-gray-300">
+            <table className="min-w-full divide-y divide-border">
               <thead>
                 <tr>
                   <th scope="col" className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-dark-grey sm:pl-0">
@@ -266,39 +244,35 @@ export default function NetworkPage() {
                     Position
                   </th>
                   <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-dark-grey">
-                    Priority
-                  </th>
-                  <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-dark-grey">
                     Status
                   </th>
                   <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-dark-grey">
-                    Profile
+                    Priority
                   </th>
-                  <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-dark-grey">
-                    Notes
+                  <th scope="col" className="relative py-3.5 pl-3 pr-4 sm:pr-0">
+                    <span className="sr-only">Actions</span>
                   </th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-gray-200">
+              <tbody className="divide-y divide-border">
                 {connections.map((connection) => (
                   <tr key={connection.id}>
                     <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-dark-grey sm:pl-0">
                       {connection.name}
                     </td>
-                    <td className="whitespace-nowrap px-3 py-4 text-sm text-medium-grey">
-                      {connection.company}
-                    </td>
-                    <td className="whitespace-nowrap px-3 py-4 text-sm text-medium-grey">
-                      {connection.position}
-                    </td>
-                    <td className="whitespace-nowrap px-3 py-4 text-sm text-medium-grey">
-                      {connection.priority}
-                    </td>
+                    <td className="whitespace-nowrap px-3 py-4 text-sm text-medium-grey">{connection.company}</td>
+                    <td className="whitespace-nowrap px-3 py-4 text-sm text-medium-grey">{connection.position}</td>
                     <td className="whitespace-nowrap px-3 py-4 text-sm">
+                      <span className={statusColors[connection.reach_out_status]}>
+                        {statusLabels[connection.reach_out_status]}
+                      </span>
+                    </td>
+                    <td className="whitespace-nowrap px-3 py-4 text-sm text-medium-grey">{connection.priority}</td>
+                    <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
                       <select
                         value={connection.reach_out_status}
                         onChange={(e) => updateConnectionStatus(connection.id, e.target.value as Connection['reach_out_status'])}
-                        className={`rounded-md px-2 py-1 text-xs font-medium ${statusColors[connection.reach_out_status]}`}
+                        className="rounded-md border-0 py-1.5 text-dark-grey shadow-sm ring-1 ring-inset ring-border focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"
                       >
                         {Object.entries(statusLabels).map(([value, label]) => (
                           <option key={value} value={value}>
@@ -306,21 +280,6 @@ export default function NetworkPage() {
                           </option>
                         ))}
                       </select>
-                    </td>
-                    <td className="whitespace-nowrap px-3 py-4 text-sm">
-                      {connection.profile_link && (
-                        <a
-                          href={connection.profile_link}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-primary hover:text-primary-dark"
-                        >
-                          View Profile
-                        </a>
-                      )}
-                    </td>
-                    <td className="whitespace-nowrap px-3 py-4 text-sm text-medium-grey">
-                      {connection.notes}
                     </td>
                   </tr>
                 ))}

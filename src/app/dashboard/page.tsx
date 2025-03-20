@@ -61,7 +61,7 @@ export default function DailyAgendaPage() {
 
   return (
     <div>
-      <div className="border-b border-gray-200 pb-5 sm:flex sm:items-center sm:justify-between">
+      <div className="border-b border-border pb-5 sm:flex sm:items-center sm:justify-between">
         <h2 className="text-2xl font-semibold leading-6 text-dark-grey">Daily Agenda</h2>
         <div className="mt-3 sm:ml-4 sm:mt-0">
           <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col sm:flex-row gap-3">
@@ -69,7 +69,7 @@ export default function DailyAgendaPage() {
               <input
                 type="text"
                 placeholder="Add a new goal"
-                className="block w-full rounded-md border-0 py-1.5 text-dark-grey shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-medium-grey focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"
+                className="block w-full rounded-md border-0 py-1.5 text-dark-grey shadow-sm ring-1 ring-inset ring-border placeholder:text-medium-grey focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"
                 {...register('title', { required: 'Title is required' })}
               />
               {errors.title && (
@@ -79,7 +79,7 @@ export default function DailyAgendaPage() {
 
             <div>
               <select
-                className="block w-full rounded-md border-0 py-1.5 text-dark-grey shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"
+                className="block w-full rounded-md border-0 py-1.5 text-dark-grey shadow-sm ring-1 ring-inset ring-border focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"
                 {...register('type', { required: 'Type is required' })}
               >
                 <option value="job_applications">Job Applications</option>
@@ -92,7 +92,7 @@ export default function DailyAgendaPage() {
               <input
                 type="number"
                 placeholder="Target count"
-                className="block w-full rounded-md border-0 py-1.5 text-dark-grey shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-medium-grey focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"
+                className="block w-full rounded-md border-0 py-1.5 text-dark-grey shadow-sm ring-1 ring-inset ring-border placeholder:text-medium-grey focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"
                 {...register('target_count', {
                   required: 'Target count is required',
                   min: { value: 1, message: 'Must be at least 1' },
@@ -114,7 +114,7 @@ export default function DailyAgendaPage() {
         </div>
       </div>
 
-      <ul role="list" className="mt-6 divide-y divide-gray-100">
+      <ul role="list" className="mt-6 divide-y divide-border">
         {goals.map((goal) => (
           <li key={goal.id} className="flex items-center justify-between gap-x-6 py-5">
             <div className="flex min-w-0 gap-x-4">
